@@ -1,27 +1,48 @@
 from insertion import genarr
 from array import array
-n = 50
-
+from random import shuffle
+from operator import lt
+n = 100
 a = genarr(n)
-b = genarr(n)
 
-def merge(a,b):
-    n = a.buffer_info()[1]
-    m = b.buffer_info()[1]
-    i = 0
-    j = 0
-    k = 0
-    c = array('b')
-    while i < n or j < m:
-        if j == m or (i<n and a[i]<b[j]):
-            c.append(a[i]) 
-            k += 1
+def TopDownMergeSort(M, compare = lt):
+    if len(M) < 2:
+        return M[:]
+    else:
+        middle = int(len(M)/2)
+        left = TopDownMergeSort(M[:middle], compare)
+        right = TopDownMergeSort(M[middle:], compare)
+        return merge(left, right, compare)
+
+def merge(left, right, compare):
+    result = array('b')
+    i, j = 0, 0
+    while i < len(left) and j < len(right):
+        if compare(left[i], right[j]):
+            result.append(left[i])
             i += 1
         else:
-            c.append(b[j]) 
-            k += 1
-            i += 1
-    return c
+            result.append(right[j])
+        while i < len(left):
+            result.append(left[i])
+        while j < len(right):
+            result.append(right[j])
+        return result
 
-print(merge(a,b))
+
+
+
+
+
+
+# Top-down реализация
+
+print(a)
+
+# Shuffle
+shuffle(a)
+
+# Bottom-up реализация
+
+print(a)
 
