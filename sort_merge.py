@@ -1,17 +1,14 @@
 from sort_insertion import genarr
-from array import array
 from random import shuffle
-from operator import lt
 
 # Top-down реализация
-
-def merge_sort(array, left_index, right_index):
+def sort_merge(array, left_index, right_index):
     if left_index >= right_index:
         return
 
     middle = (left_index + right_index)//2
-    merge_sort(array, left_index, middle)
-    merge_sort(array, middle + 1, right_index)
+    sort_merge(array, left_index, middle)
+    sort_merge(array, middle + 1, right_index)
     merge(array, left_index, right_index, middle)
 
 
@@ -60,11 +57,13 @@ def merge(array, left_index, right_index, middle):
 
 
 # main code
-n = 100
-a = genarr(n)
+a = genarr()
 
 # Сортировка сверху вниз
-merge_sort(a, 0, a.buffer_info()[1])
+sort_merge(a, 0, a.buffer_info()[1])
+
+# Вывод осортированного массива
 print(a)
-# # Shuffle
-# shuffle(a)
+
+# Shuffle
+shuffle(a)

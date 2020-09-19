@@ -3,7 +3,7 @@ from array import array
 import random
 n = 100
 
-def genarr(n):
+def genarr(n=100):
     arr = array('b')   
     random.seed("ANTON")
     for i in range(0,n):
