@@ -1,5 +1,7 @@
 # Пузырьковая сортировка
-
+# Сортировка методом пузырька
+# Близорукий прапорщик
+# Вы неправильно стоите поменяйтесь
 def sort_bubble(array):
     swapped = True
     while swapped:
@@ -8,11 +10,8 @@ def sort_bubble(array):
             if array[i] > array[i+1]:
                 array[i], array[i + 1] = array[i + 1], array[i]
                 swapped = True
+import random
+A = [random.randint(100) for x in range(100)]
 
-from sort_insertion import genarr
-
-array = genarr()
-
-sort_bubble(array)
-
-print(array)
+sort_bubble(A)
+print(A)
