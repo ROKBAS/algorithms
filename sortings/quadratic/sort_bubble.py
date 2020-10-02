@@ -2,16 +2,17 @@
 # Сортировка методом пузырька
 # Близорукий прапорщик
 # Вы неправильно стоите поменяйтесь
-def sort_bubble(array):
-    swapped = True
-    while swapped:
-        swapped = False
-        for i in range(array.buffer_info()[1]-1):
-            if array[i] > array[i+1]:
-                array[i], array[i + 1] = array[i + 1], array[i]
-                swapped = True
-import random
-A = [random.randint(100) for x in range(100)]
+from test_sort import test_sort
 
-sort_bubble(A)
-print(A)
+
+def sort_bubble(A: list):
+    """ Сортировка списка А методом пузырька.
+Время: O(n^2)."""
+    N = len(A)
+    for bypass in range(1, N):
+        for k in range(0, N - bypass):
+            if(A[k] > A[k+1]):
+                A[k], A[k+1] = A[k+1], A[k]
+
+
+test_sort(sort_bubble)
